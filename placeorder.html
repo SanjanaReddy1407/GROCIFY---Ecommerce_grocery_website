@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Place Order - GROCIFY</title>
-    <!-- 
-        Integration Note: Flask's url_for function is used to correctly link to the 
-        CSS file located in your 'static' directory.
-    -->
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
@@ -113,36 +110,23 @@
         </div>
     </header>
     
-    <!-- Flask Message Display (Success/Error feedback from POST) -->
-    {% if message %}
-    <div class="message-box {% if 'Confirmed' in message %}success{% else %}error{% endif %}">
-        {{ message }}
-    </div>
-    {% endif %}
-
+   
 
     <div class="order-container">
         <div class="order-details">
             <h2>📦 Order Summary</h2>
             <ul id="order-summary">
-                <!-- Cart items will be populated by JavaScript -->
-            </ul>
+                </ul>
         </div>
 
         <div class="shipping-form">
             
             <h2>🚚 Shipping Details</h2>
-            <!-- 
-                Integration Note: The form action is set to the root route '/', 
-                which is handled by the 'home' function in app.py for POST requests. 
-            -->
-            <form id="shipping-details-form" action="{{ url_for('index') }}" method="POST">
+            
+            <form id="shipping-details-form" action="{{ url_for('placeorder') }}" method="POST">
                 
-                <!-- HIDDEN FIELDS FOR CART DATA (Populated by JS before submission) -->
                 <input type="hidden" id="order_details_json" name="order_details_json">
                 <input type="hidden" id="order_total_value" name="order_total_value">
-                <!-- END HIDDEN FIELDS -->
-
                 <label for="name">Full Name:</label>
                 <input type="text" id="name" name="name" required>
 
@@ -168,6 +152,7 @@
 
         function getQueryParams() {
             const params = {};
+            // Use window.location.search to get the query string
             const queryString = window.location.search.substring(1); 
             const queries = queryString.split('&');
 
@@ -185,16 +170,25 @@
             const params = getQueryParams();
             const summaryList = document.getElementById('order-summary');
             
-            
+            // Check if cart data exists in URL parameters
             if (params.cart) {
-                // Parse the JSON cart string back into an array
-                globalCartData = JSON.parse(params.cart);
-                globalTotal = parseFloat(params.total);
+                try {
+                    // Parse the JSON cart string back into an array
+                    globalCartData = JSON.parse(params.cart);
+                    globalTotal = parseFloat(params.total);
+                } catch (e) {
+                    console.error("Failed to parse cart data:", e);
+                    globalCartData = [];
+                    globalTotal = 0;
+                }
             }
 
-            if (globalCartData.length === 0) {
-                // Assuming the shopping page link is 'index.html'
-                summaryList.innerHTML = '<li>No items found. Your cart may have expired or been cleared. <a href="index.html">Go back to shopping</a></li>'; 
+            if (globalCartData.length === 0 || isNaN(globalTotal)) {
+                summaryList.innerHTML = '<li>🛒 No items found in your cart. <a href="/">Go back to shopping</a></li>'; 
+                
+                // Clear hidden fields if data is bad
+                document.getElementById('order_details_json').value = '';
+                document.getElementById('order_total_value').value = '';
                 return;
             }
 
@@ -217,7 +211,7 @@
             const totalLi = document.createElement('li');
             totalLi.innerHTML = `
                 <span>Order Total:</span>
-                <span id="final-total-price">Rs. ${globalTotal.toFixed(0)}</span>
+                <span id="final-total-price">Rs. ${globalTotal.toFixed(2)}</span>
             `;
             summaryList.appendChild(totalLi);
         }

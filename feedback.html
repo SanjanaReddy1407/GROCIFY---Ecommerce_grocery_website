@@ -63,23 +63,58 @@
         <form action="#" method="POST">
             
             <div class="form-group">
-                <label for="feedback-email">name</label>
-                <input type="text" id="feedback-email" name="email" placeholder="Enter your name">
+                <label for="feedback-email">Email</label>
+                <input type="email" id="feedback-email" name="email" placeholder="Enter your email address">
             </div>
 
-            <div class="form-group">
-                <label for="name">cource</label>
-                <input type="text" id="name" name="name" placeholder="Enter your cource">
-            </div>
             
-            <div class="rating-item">
+            
+            <h2 style="margin-top: 20px; font-size: 1.2em;">Rate Specific Areas</h2>
+
+            <div class="form-group rating-item">
                 <span class="rating-label">Product Quality</span>
                 <div class="rating-scale">
-                    {% for i in range(1, 6) %}
-                    <input type="radio" id="product-quality-{{ i }}" name="product_quality" value="{{ i }}">
-                    <label for="product-quality-{{ i }}">{{ i }}</label>
-                    {% endfor %}
+                    <input type="radio" id="quality1" name="product_quality" value="1" required><label for="quality1">1</label>
+                    <input type="radio" id="quality2" name="product_quality" value="2"><label for="quality2">2</label>
+                    <input type="radio" id="quality3" name="product_quality" value="3"><label for="quality3">3</label>
+                    <input type="radio" id="quality4" name="product_quality" value="4"><label for="quality4">4</label>
+                    <input type="radio" id="quality5" name="product_quality" value="5"><label for="quality5">5</label>
                 </div>
+            </div>
+
+            <div class="form-group rating-item">
+                <span class="rating-label">Website Usability</span>
+                <div class="rating-scale">
+                    <input type="radio" id="usability1" name="website_usability" value="1" required><label for="usability1">1</label>
+                    <input type="radio" id="usability2" name="website_usability" value="2"><label for="usability2">2</label>
+                    <input type="radio" id="usability3" name="website_usability" value="3"><label for="usability3">3</label>
+                    <input type="radio" id="usability4" name="website_usability" value="4"><label for="usability4">4</label>
+                    <input type="radio" id="usability5" name="website_usability" value="5"><label for="usability5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group rating-item">
+                <span class="rating-label">Customer Service</span>
+                <div class="rating-scale">
+                    <input type="radio" id="service1" name="customer_service" value="1" required><label for="service1">1</label>
+                    <input type="radio" id="service2" name="customer_service" value="2"><label for="service2">2</label>
+                    <input type="radio" id="service3" name="customer_service" value="3"><label for="service3">3</label>
+                    <input type="radio" id="service4" name="customer_service" value="4"><label for="service4">4</label>
+                    <input type="radio" id="service5" name="customer_service" value="5"><label for="service5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group rating-item">
+                <span class="rating-label">Delivery & Shipping</span>
+                <div class="rating-scale">
+                    <input type="radio" id="delivery1" name="delivery_shipping" value="1" required><label for="delivery1">1</label>
+                    <input type="radio" id="delivery2" name="delivery_shipping" value="2"><label for="delivery2">2</label>
+                    <input type="radio" id="delivery3" name="delivery_shipping" value="3"><label for="delivery3">3</label>
+                    <input type="radio" id="delivery4" name="delivery_shipping" value="4"><label for="delivery4">4</label>
+                    <input type="radio" id="delivery5" name="delivery_shipping" value="5"><label for="delivery5">5</label>
+                </div>
+            </div>
+            
             
 
             <div class="form-group" style="margin-top: 20px;">
