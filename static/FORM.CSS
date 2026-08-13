@@ -1,0 +1,321 @@
+/* --- Global Reset and Typography --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    /* New Vibrant Color Palette */
+    --primary-color-start: #6a11cb; /* Deep Purple */
+    --primary-color-end: #2575fc;   /* Bright Blue */
+    --primary-text-color: #ffffff; /* Text for primary buttons/titles */
+
+    --background-light: #e0e7ee;    /* Soft Grey-Blue */
+    --card-background: #ffffff;
+
+    --text-color-dark: #2c3e50;     /* Dark Grey for body text */
+    --text-color-medium: #546a7f;   /* Medium Grey for descriptions */
+    --border-color-light: #e0e0e0;  /* Light Grey for input borders */
+    --focus-border-color: #8c7ae6;  /* Softer purple for focus */
+
+    --success-color: #2ecc71;
+    --error-color: #e74c3c;
+
+    /* Shadows */
+    --soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --medium-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e4d94a, #167061); /* Subtle gradient background */
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center form vertically and horizontally */
+    min-height: 100vh;
+    padding: 30px 20px;
+}
+
+/* --- Form Container and Headings --- */
+
+.form-container {
+    background-color: var(--card-background);
+    padding: 45px;
+    border-radius: 18px; /* More rounded corners */
+    box-shadow: var(--medium-shadow); /* Stronger, more attractive shadow */
+    width: 100%;
+    max-width: 700px; /* Slightly wider for better layout */
+    animation: fadeIn 0.8s ease-out; /* Add a subtle entrance animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-title {
+    background: linear-gradient(90deg, var(--primary-color-start), var(--primary-color-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 2.4em; /* Larger title */
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 3px solid rgba(var(--primary-color-end), 0.3); /* Softer underline */
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Text shadow for depth */
+}
+
+.form-description {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--text-color-medium);
+    font-size: 1.05em;
+    font-weight: 300;
+}
+
+/* --- Form Groups and Inputs --- */
+
+.form-group {
+    margin-bottom: 25px; /* More spacing between groups */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600; /* Bolder labels */
+    color: var(--text-color-dark);
+    font-size: 1.05em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 14px; /* More padding for a softer feel */
+    border: 1px solid var(--border-color-light);
+    border-radius: 10px; /* More rounded inputs */
+    font-size: 1em;
+    color: var(--text-color-dark);
+    transition: all 0.3s ease; /* Smoother transitions */
+    background-color: #fcfcfc; /* Slightly off-white input background */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06); /* Inner shadow for depth */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--focus-border-color);
+    box-shadow: 0 0 0 4px rgba(var(--focus-border-color), 0.25), inset 0 1px 3px rgba(0, 0, 0, 0.08);
+    outline: none;
+    background-color: #fff;
+}
+
+textarea {
+    min-height: 120px; /* Taller text area */
+    resize: vertical;
+}
+
+/* --- Custom Select and Radio/Checkbox Styling --- */
+
+/* Style for the Gender/Country dropdown */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%236a11cb' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Purple arrow */
+    background-repeat: no-repeat;
+    background-position: right 15px center; /* Slightly more space for arrow */
+    background-size: 18px; /* Larger arrow */
+}
+
+/* Basic styling for radio/checkbox labels */
+.form-group input[type="radio"],
+.form-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px; /* More space */
+    accent-color: var(--primary-color-start); /* Tint native checkbox/radio */
+}
+
+.form-group input[type="radio"] + label,
+.form-group input[type="checkbox"] + label {
+    font-weight: 400; /* Regular weight for these labels */
+    display: inline-block;
+    margin-bottom: 0;
+    color: var(--text-color-dark);
+}
+
+
+/* --- Submit Button Styling --- */
+
+.form-submit-btn {
+    display: block;
+    width: 100%;
+    padding: 16px; /* More padding */
+    margin-top: 40px; /* More top margin */
+    background: linear-gradient(45deg, var(--primary-color-start), var(--primary-color-end)); /* Gradient button */
+    color: var(--primary-text-color);
+    font-weight: 700;
+    font-size: 1.2em; /* Larger text */
+    border: none;
+    border-radius: 10px; /* More rounded button */
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger button shadow */
+    transition: all 0.3s ease;
+    letter-spacing: 0.8px;
+}
+
+.form-submit-btn:hover {
+    background: linear-gradient(45deg, #7a22dc, #3585ff); /* Slightly shifted gradient on hover */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); /* Lift effect */
+}
+
+.form-submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Detailed Feedback Rating System Styles --- */
+
+h2 {
+    font-size: 1.6em;
+    color: var(--primary-color-start);
+    text-align: center;
+    margin: 35px 0 25px;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.rating-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0; /* More vertical padding */
+    border-bottom: 1px dashed var(--border-color-light); /* Dashed separator */
+}
+
+.rating-item:last-of-type {
+    border-bottom: none;
+}
+
+.rating-label {
+    font-weight: 600;
+    flex-basis: 45%;
+    color: var(--text-color-dark);
+    font-size: 1.05em;
+}
+
+.rating-scale {
+    display: flex;
+    gap: 8px; /* More space between numbers */
+    flex-basis: 55%;
+    justify-content: flex-end;
+}
+
+/* Hide actual radio input */
+.rating-scale input[type="radio"] {
+    display: none;
+}
+
+/* Style the label (the number button) */
+.rating-scale label {
+    padding: 10px 14px; /* More padding for click area */
+    border: 2px solid var(--border-color-light); /* Thicker border */
+    border-radius: 8px; /* More rounded numbers */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1em; /* Slightly larger numbers */
+    font-weight: 600; /* Bolder numbers */
+    color: var(--text-color-medium);
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for numbers */
+}
+
+/* Style for the selected rating number */
+.rating-scale input[type="radio"]:checked + label {
+    background: linear-gradient(45deg, var(--primary-color-start), var(--primary-color-end));
+    color: var(--primary-text-color);
+    border-color: transparent; /* Hide border when active, replaced by gradient */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Stronger shadow when active */
+    transform: translateY(-2px); /* Slight lift */
+}
+
+/* Hover effect for numbers */
+.rating-scale label:hover {
+    background-color: #eaeaea;
+    border-color: var(--focus-border-color);
+    color: var(--text-color-dark);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 30px 20px;
+        border-radius: 0;
+        box-shadow: none; /* Less ornate on mobile */
+    }
+
+    .form-title {
+        font-size: 2em;
+        padding-bottom: 10px;
+    }
+
+    .form-description {
+        margin-bottom: 25px;
+    }
+
+    h2 {
+        font-size: 1.4em;
+        margin: 25px 0 20px;
+    }
+
+    .rating-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 0 10px;
+    }
+    
+    .rating-label {
+        margin-bottom: 12px;
+        flex-basis: 100%;
+        font-size: 1em;
+    }
+
+    .rating-scale {
+        justify-content: space-between;
+        width: 100%;
+        gap: 5px;
+    }
+
+    .rating-scale label {
+        padding: 8px 10px;
+        font-size: 0.9em;
+        flex-grow: 1; /* Allow numbers to grow to fill space */
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-title {
+        font-size: 1.6em;
+    }
+    .form-container {
+        padding: 25px 15px;
+    }
+    body {
+        padding: 15px 10px;
+    }
+    .form-submit-btn {
+        font-size: 1em;
+        padding: 14px;
+    }
+}
